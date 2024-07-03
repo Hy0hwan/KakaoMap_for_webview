@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 
 const KakaoMaps = () => {
-  const xValue = 37.365264512305174;
-  const yValue = 127.10676860117488;
+  // URL 파라미터 파싱
+  const searchParams = new URLSearchParams(window.location.search);
+  const xValue = parseFloat(searchParams.get('x'));
+  const yValue = parseFloat(searchParams.get('y'));
 
   useEffect(() => {
     // Check if kakao object exists
@@ -32,7 +34,7 @@ const KakaoMaps = () => {
     return () => {
       document.head.removeChild(script);
     };
-  }, []);
+  }, [xValue, yValue]);
 
   return (
     <div>
